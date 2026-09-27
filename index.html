@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2563eb">
+<meta name="description" content="Student Super App - Study, files, quizzes, planner and student tools">
+
+<title>Student Super App</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#f4f7fb;
+  color:#172033;
+  min-height:100vh;
+}
+
+header{
+  background:#2563eb;
+  color:white;
+  padding:22px 18px;
+  border-radius:0 0 24px 24px;
+}
+
+header h1{
+  font-size:25px;
+}
+
+header p{
+  margin-top:6px;
+  opacity:.9;
+}
+
+.container{
+  padding:18px;
+  max-width:900px;
+  margin:auto;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.card{
+  background:white;
+  border:0;
+  border-radius:18px;
+  padding:20px 14px;
+  min-height:125px;
+  box-shadow:0 3px 12px #00000012;
+  text-align:left;
+  cursor:pointer;
+  transition:.15s;
+}
+
+.card:active{
+  transform:scale(.97);
+}
+
+.icon{
+  font-size:32px;
+  display:block;
+  margin-bottom:12px;
+}
+
+.card h3{
+  font-size:16px;
+}
+
+.card p{
+  color:#667085;
+  font-size:12px;
+  margin-top:5px;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.back{
+  border:0;
+  background:white;
+  padding:10px 15px;
+  border-radius:12px;
+  margin-bottom:16px;
+  box-shadow:0 2px 8px #00000012;
+  cursor:pointer;
+}
+
+.section-title{
+  margin:5px 0 15px;
+}
+
+.list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.item{
+  background:white;
+  padding:16px;
+  border-radius:15px;
+  box-shadow:0 2px 8px #00000010;
+  cursor:pointer;
+}
+
+.item strong{
+  display:block;
+}
+
+.item small{
+  color:#667085;
+}
+
+.action{
+  border:0;
+  background:#2563eb;
+  color:white;
+  padding:11px 15px;
+  border-radius:10px;
+  cursor:pointer;
+  margin:5px 3px 10px 0;
+}
+
+.action.secondary{
+  background:#e8eefc;
+  color:#2563eb;
+}
+
+input,select,textarea{
+  width:100%;
+  padding:13px;
+  border:1px solid #d0d5dd;
+  border-radius:10px;
+  margin:6px 0 12px;
+  font-size:15px;
+}
+
+textarea{
+  min-height:120px;
+}
+
+.empty{
+  text-align:center;
+  color:#667085;
+  padding:35px 10px;
+}
+
+.file-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.file-actions button{
+  border:0;
+  background:#eef2ff;
+  padding:7px;
+  border-radius:8px;
+  margin-left:3px;
+}
+
+footer{
+  text-align:center;
+  color:#667085;
+  padding:30px 10px;
+  font-size:12px;
+}
+
+@media(max-width:430px){
+  .grid{
+    gap:10px;
+  }
+
+  .card{
+    padding:16px 12px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🎓 Student Super App</h1>
+  <p>Study • Organize • Practice • Create</p>
+</header>
+
+<div class="container">
+
+<!-- HOME -->
+<section id="home" class="page active">
+
+  <div class="section-title">
+    <h2>Student Dashboard</h2>
+    <p>Everything you need for school in one place.</p>
+  </div>
+
+  <div class="grid">
+
+    <button class="card" onclick="openPage('study')">
+      <span class="icon">📚</span>
+      <h3>Study Hub</h3>
+      <p>Subjects, chapters and notes</p>
+    </button>
+
+    <button class="card" onclick="openPage('calculator')">
+      <span class="icon">🧮</span>
+      <h3>Maths & Physics</h3>
+      <p>Formula calculators</p>
+    </button>
+
+    <button class="card" onclick="openPage('java')">
+      <span class="icon">💻</span>
+      <h3>Java Coding</h3>
+      <p>Write and practise Java</p>
+    </button>
+
+    <button class="card" onclick="openPage('exam')">
+      <span class="icon">📝</span>
+      <h3>Exam Generator</h3>
+      <p>Create practice papers</p>
+    </button>
+
+    <button class="card" onclick="openPage('quiz')">
+      <span class="icon">🎯</span>
+      <h3>Quiz Battle</h3>
+      <p>Test your knowledge</p>
+    </button>
+
+    <button class="card" onclick="openPage('files')">
+      <span class="icon">📁</span>
+      <h3>Class File Manager</h3>
+      <p>Organize school files</p>
+    </button>
+
+    <button class="card" onclick="openPage('planner')">
+      <span class="icon">📅</span>
+      <h3>Student Planner</h3>
+      <p>Homework and timetable</p>
+    </button>
+
+    <button class="card" onclick="openPage('tools')">
+      <span class="icon">🔧</span>
+      <h3>Student Toolbox</h3>
+      <p>Useful student utilities</p>
+    </button>
+
+  </div>
+</section>
+
+
+<!-- STUDY HUB -->
+<section id="study" class="page">
+
+<button class="back" onclick="openPage('home')">← Home</button>
+
+<h2>📚 Study Hub</h2>
+<p style="margin:8px 0 18px">Choose your subject.</p>
+
+<div class="list">
+
+<div class="item">
+<strong>📐 Mathematics</strong>
+<small>ICSE Classes 5–10</small>
+</div>
+
+<div class="item">
+<strong>⚡ Physics</strong>
+<small>ICSE Classes 5–10</small>
+</div>
+
+<div class="item">
+<strong>🧪 Chemistry</strong>
+<small>ICSE Classes 5–10</small>
+</div>
+
+<div class="item">
+<strong>🧬 Biology</strong>
+<small>ICSE Classes 5–10</small>
+</div>
+
+<div class="item">
+<strong>📖 English</strong>
+<small>Literature and language</small>
+</div>
+
+<div class="item">
+<strong>💻 Computer Applications</strong>
+<small>Java and computer studies</small>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CALCULATOR -->
+<section id="calculator" class="page">
+
+<button class="back" onclick="openPage('home')">← Home</button>
+
+<h2>🧮 Maths & Physics</h2>
+
+<div class="list" style="margin-top:18px">
+
+<div class="item">
+<strong>📐 Mathematics Formula Calculator</strong>
+<small>More formulas will be added here.</small>
+</div>
+
+<div class="item">
+<strong>⚡ Physics Formula Calculator</strong>
+<small>Motion, force, work, electricity and more.</small>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- JAVA -->
+<section id="java" class="page">
+
+<button class="back" onclick="openPage('home')">← Home</button>
+
+<h2>💻 Java Coding</h2>
+
+<textarea id="javaCode"
+placeholder="Write your Java code here...">class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello Student!");
+    }
+}</textarea>
+
+<button class="action" onclick="saveJava()">💾 Save Code</button>
+
+<p id="javaStatus"></p>
+
+</section>
+
+
+<!-- EXAM -->
+<section id="exam" class="page">
+
+<button class="back" onclick="openPage('home')">← Home</button>
+
+<h2>📝 Exam Paper Generator</h2>
+
+<label>Subject</label>
+<select id="examSubject">
+<option>Mathematics</option>
+<option>Physics</option>
+<option>Chemistry</option>
+<option>Biology</option>
+<option>English</option>
+<option>Computer Applications</option>
+</select>
+
+<label>Number of Questions</label>
+<input id="questionCount" type="number" value="20" min="1" max="100">
+
+<button class="action" onclick="generateExam()">Generate Paper</button>
+
+<div id="examOutput"></div>
+
+</section>
+
+
+<!-- QUIZ -->
+<section id="quiz" class="page">
+
+<button class="back" onclick="openPage('home')">← Home</button>
+
+<h2>🎯 Quiz Battle</h2>
+
+<div class="item" style="margin-top:18px">
+
+<strong>Ready for a quiz?</strong>
+
+<p style="margin:10px 0;color:#667085">
+Choose a subject and start practising.
+</p>
+
+<select id="quizSubject">
+<option>Mathematics</option>
+<option>Physics</option>
+<option>Chemistry</option>
+<option>Biology</option>
+<option>Computer Applications</option>
+</select>
+
+<button class="action" onclick="startQuiz()">Start Quiz</button>
+
+<div id="quizOutput"></div>
+
+</div>
+
+</section>
+
+
+<!-- FILE MANAGER -->
+<section id="files" class="page">
+
+<button class="back" onclick="openPage('home')">← Home</button>
+
+<h2>📁 Class File Manager</h2>
+
+<p style="margin:8px 0 15px">
+Organize your school files.
+</p>
+
+<button class="action" onclick="createFolder()">📁 New Folder</button>
+
+<button class="action secondary" onclick="document.getElementById('fileInput').click()">
+📄 Add File
+</button>
+
+<input
+id="fileInput"
+type="file"
+multiple
+style="display:none"
+onchange="addFiles(event)"
+>
+
+<input
+id="fileSearch"
+placeholder="🔍 Search files..."
+oninput="displayFiles()"
+>
+
+<div id="fileList" class="list"></div>
+
+</section>
+
+
+<!-- PLANNER -->
+<section id="planner" class="page">
+
+<button class="back" onclick="openPage('home')">← Home</button>
+
+<h2>📅 Student Planner</h2>
+
+<input id="taskInput" placeholder="Homework / assignment / test">
+
+<input id="taskDate" type="date">
+
+<button class="action" onclick="addTask()">Add Task</button>
+
+<div id="taskList" class="list"></div>
+
+</section>
+
+
+<!-- TOOLBOX -->
+<section id="tools" class="page">
+
+<button class="back" onclick="openPage('home')">← Home</button>
+
+<h2>🔧 Student Toolbox</h2>
+
+<div class="list" style="margin-top:18px">
+
+<div class="item">
+<strong>Percentage Calculator</strong>
+
+<input id="percentValue" type="number" placeholder="Marks obtained">
+
+<input id="percentTotal" type="number" placeholder="Total marks">
+
+<button class="action" onclick="percentage()">Calculate</button>
+
+<p id="percentResult"></p>
+
+</div>
+
+<div class="item">
+
+<strong>⏱ Stopwatch</strong>
+
+<h2 id="stopwatch">00:00:00</h2>
+
+<button class="action" onclick="startStopwatch()">Start</button>
+<button class="action secondary" onclick="stopStopwatch()">Stop</button>
+<button class="action secondary" onclick="resetStopwatch()">Reset</button>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<footer>
+Student Super App • Permanent Project
+</footer>
+
+
+<script>
+
+/* ---------------- NAVIGATION ---------------- */
+
+function openPage(page){
+
+  document.querySelectorAll(".page").forEach(
+    p => p.classList.remove("active")
+  );
+
+  document.getElementById(page).classList.add("active");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+  if(page==="files"){
+    displayFiles();
+  }
+
+  if(page==="planner"){
+    displayTasks();
+  }
+}
+
+
+/* ---------------- JAVA ---------------- */
+
+function saveJava(){
+
+  const code=document.getElementById("javaCode").value;
+
+  localStorage.setItem("studentJavaCode",code);
+
+  document.getElementById("javaStatus").textContent=
+  "✅ Java code saved on this device.";
+
+}
+
+window.addEventListener("load",()=>{
+
+  const saved=localStorage.getItem("studentJavaCode");
+
+  if(saved){
+    document.getElementById("javaCode").value=saved;
+  }
+
+});
+
+
+/* ---------------- EXAM ---------------- */
+
+function generateExam(){
+
+  const subject=document.getElementById("examSubject").value;
+  const count=document.getElementById("questionCount").value;
+
+  document.getElementById("examOutput").innerHTML=`
+
+    <div class="item" style="margin-top:15px">
+
+      <strong>📄 ${subject} Practice Paper</strong>
+
+      <p style="margin-top:8px">
+      Number of questions: ${count}
+      </p>
+
+      <p style="margin-top:8px;color:#667085">
+      The full question bank will be added to the permanent app.
+      </p>
+
+    </div>
+  `;
+
+}
+
+
+/* ---------------- QUIZ ---------------- */
+
+function startQuiz(){
+
+  const subject=document.getElementById("quizSubject").value;
+
+  document.getElementById("quizOutput").innerHTML=`
+
+    <div class="item" style="margin-top:15px">
+
+      <strong>🎯 ${subject} Quiz</strong>
+
+      <p style="margin-top:8px">
+      Quiz engine ready.
+      </p>
+
+      <p style="color:#667085;margin-top:5px">
+      Subject question banks will be connected here.
+      </p>
+
+    </div>
+
+  `;
+
+}
+
+
+/* ---------------- FILE MANAGER ---------------- */
+
+let files=JSON.parse(
+  localStorage.getItem("studentFiles") || "[]"
+);
+
+
+function saveFiles(){
+
+  localStorage.setItem(
+    "studentFiles",
+    JSON.stringify(files)
+  );
+
+}
+
+
+function createFolder(){
+
+  const name=prompt("Enter folder name:");
+
+  if(!name || !name.trim()) return;
+
+  files.push({
+    name:name.trim(),
+    type:"folder",
+    created:new Date().toISOString()
+  });
+
+  saveFiles();
+  displayFiles();
+
+}
+
+
+function addFiles(event){
+
+  const selected=[...event.target.files];
+
+  selected.forEach(file=>{
+
+    files.push({
+      name:file.name,
+      type:"file",
+      size:file.size,
+      created:new Date().toISOString()
+    });
+
+  });
+
+  saveFiles();
+  displayFiles();
+
+  event.target.value="";
+
+}
+
+
+function deleteFile(index){
+
+  if(!confirm("Delete this item?")) return;
+
+  files.splice(index,1);
+
+  saveFiles();
+  displayFiles();
+
+}
+
+
+function renameFile(index){
+
+  const newName=prompt(
+    "Enter new name:",
+    files[index].name
+  );
+
+  if(!newName || !newName.trim()) return;
+
+  files[index].name=newName.trim();
+
+  saveFiles();
+  displayFiles();
+
+}
+
+
+function displayFiles(){
+
+  const list=document.getElementById("fileList");
+
+  const search=
+    document.getElementById("fileSearch").value
+    .toLowerCase();
+
+  const filtered=files.filter(
+    f=>f.name.toLowerCase().includes(search)
+  );
+
+  if(filtered.length===0){
+
+    list.innerHTML=`
+      <div class="empty">
+        📂 No files or folders yet.<br>
+        Create a folder or add a file.
+      </div>
+    `;
+
+    return;
+  }
+
+  list.innerHTML="";
+
+  filtered.forEach(file=>{
+
+    const realIndex=files.indexOf(file);
+
+    const div=document.createElement("div");
+
+    div.className="item";
+
+    div.innerHTML=`
+
+      <div class="file-row">
+
+        <div>
+
+          <strong>
+            ${file.type==="folder" ? "📁" : "📄"}
+            ${escapeHTML(file.name)}
+          </strong>
+
+          <small>
+            ${file.type==="folder"
+              ? "Folder"
+              : formatSize(file.size || 0)}
+          </small>
+
+        </div>
+
+        <div class="file-actions">
+
+          <button onclick="renameFile(${realIndex})">
+            ✏️
+          </button>
+
+          <button onclick="deleteFile(${realIndex})">
+            🗑️
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+    list.appendChild(div);
+
+  });
+
+}
+
+
+function formatSize(bytes){
+
+  if(bytes<1024) return bytes+" B";
+
+  if(bytes<1024*1024)
+    return (bytes/1024).toFixed(1)+" KB";
+
+  return (bytes/(1024*1024)).toFixed(1)+" MB";
+
+}
+
+
+function escapeHTML(text){
+
+  return text
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* ---------------- PLANNER ---------------- */
+
+let tasks=JSON.parse(
+  localStorage.getItem("studentTasks") || "[]"
+);
+
+
+function saveTasks(){
+
+  localStorage.setItem(
+    "studentTasks",
+    JSON.stringify(tasks)
+  );
+
+}
+
+
+function addTask(){
+
+  const input=document.getElementById("taskInput");
+
+  const date=document.getElementById("taskDate");
+
+  if(!input.value.trim()){
+
+    alert("Enter a task.");
+
+    return;
+
+  }
+
+  tasks.push({
+    text:input.value.trim(),
+    date:date.value
+  });
+
+  input.value="";
+  date.value="";
+
+  saveTasks();
+  displayTasks();
+
+}
+
+
+function deleteTask(index){
+
+  tasks.splice(index,1);
+
+  saveTasks();
+  displayTasks();
+
+}
+
+
+function displayTasks(){
+
+  const list=document.getElementById("taskList");
+
+  if(tasks.length===0){
+
+    list.innerHTML=`
+      <div class="empty">
+        📅 No tasks yet.
+      </div>
+    `;
+
+    return;
+
+  }
+
+  list.innerHTML="";
+
+  tasks.forEach((task,index)=>{
+
+    const div=document.createElement("div");
+
+    div.className="item";
+
+    div.innerHTML=`
+
+      <div class="file-row">
+
+        <div>
+
+          <strong>📌 ${escapeHTML(task.text)}</strong>
+
+          <small>
+            ${task.date || "No date"}
+          </small>
+
+        </div>
+
+        <button
+          class="action secondary"
+          onclick="deleteTask(${index})">
+          ✓
+        </button>
+
+      </div>
+
+    `;
+
+    list.appendChild(div);
+
+  });
+
+}
+
+
+/* ---------------- PERCENTAGE ---------------- */
+
+function percentage(){
+
+  const value=
+    Number(document.getElementById("percentValue").value);
+
+  const total=
+    Number(document.getElementById("percentTotal").value);
+
+  if(!total){
+
+    document.getElementById("percentResult").textContent=
+      "Enter valid marks.";
+
+    return;
+
+  }
+
+  const result=(value/total)*100;
+
+  document.getElementById("percentResult").textContent=
+    "Result: "+result.toFixed(2)+"%";
+
+}
+
+
+/* ---------------- STOPWATCH ---------------- */
+
+let stopwatchSeconds=0;
+let stopwatchTimer=null;
+
+
+function updateStopwatch(){
+
+  stopwatchSeconds++;
+
+  const h=
+    String(Math.floor(stopwatchSeconds/3600)).padStart(2,"0");
+
+  const m=
+    String(Math.floor((stopwatchSeconds%3600)/60)).padStart(2,"0");
+
+  const s=
+    String(stopwatchSeconds%60).padStart(2,"0");
+
+  document.getElementById("stopwatch").textContent=
+    `${h}:${m}:${s}`;
+
+}
+
+
+function startStopwatch(){
+
+  if(stopwatchTimer) return;
+
+  stopwatchTimer=setInterval(
+    updateStopwatch,
+    1000
+  );
+
+}
+
+
+function stopStopwatch(){
+
+  clearInterval(stopwatchTimer);
+
+  stopwatchTimer=null;
+
+}
+
+
+function resetStopwatch(){
+
+  stopStopwatch();
+
+  stopwatchSeconds=0;
+
+  document.getElementById("stopwatch").textContent=
+    "00:00:00";
+
+}
+
+</script>
+
+</body>
+  </html>
